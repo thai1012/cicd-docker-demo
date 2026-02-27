@@ -10,7 +10,7 @@ cat >/www/index.html <<'HTML'
 <html>
   <head><meta charset="utf-8"><title>CI/CD Demo</title></head>
   <body>
-    <h1>✅ CI/CD Demo OK</h1>
+    <h1>🚀 Auto Deploy Version 2</h1>
     <p>If you see this, container is running.</p>
   </body>
 </html>
