@@ -1,0 +1,34 @@
+name: CI-CD Demo (Self-hosted Ubuntu - Docker + Bash)
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  ci_cd:
+    runs-on: self-hosted
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Run tests (bash)
+        shell: bash
+        run: |
+          bash app/test.sh
+
+      - name: Build docker image (local)
+        shell: bash
+        run: |
+          docker build -t demo-app:latest .
+
+      - name: Deploy with docker compose (bash)
+        shell: bash
+        run: |
+          bash scripts/deploy.sh
+
+      - name: Smoke test
+        shell: bash
+        run: |
+          curl -f http://localhost:8080 | head -n 10
